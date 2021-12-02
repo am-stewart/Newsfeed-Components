@@ -86,8 +86,66 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Allison\'s Article',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+
+function articleMaker (obj) {
+
+  const articleWrapper = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  articleWrapper.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  articleWrapper.appendChild(articleTitle);
+  articleWrapper.appendChild(articleDate);
+  articleWrapper.appendChild(para1);
+  articleWrapper.appendChild(para2);
+  articleWrapper.appendChild(para3);
+  articleWrapper.appendChild(expandButton);
+
+  articleTitle.textContent = obj.title;
+  articleDate.textContent = obj.date;
+  para1.textContent = obj.firstParagraph;
+  para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  expandButton.textContent = '+';
+  
+  expandButton.addEventListener('click', event => {
+    articleWrapper.classList.toggle('article-open');
+  })
+  return articleWrapper;
+}
+
+const articles = document.querySelector('div.articles');
+
+data.forEach(item =>{
+  articles.appendChild(articleMaker(item));
+})
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
