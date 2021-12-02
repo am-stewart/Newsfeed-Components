@@ -8,7 +8,34 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
+function menuMaker(listArray){
+    const menu = document.createElement('div');
+    const uList = document.createElement('ul');
+    
+    menu.appendChild('uList');
+    uList.appendChild('listItem');
 
+    menu.classList.add('menu');
+
+    listArray.forEach((elem) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = elem;
+      uList.appendChild(listItem);
+    })
+
+    const menuButton = document.querySelector('.menu-button');
+
+    menuButton.addEventListener('click', event => {
+      menu.classList.toggle('menu--open');
+    })
+
+  return menu;
+}
+console.log(menuMaker(menuItems));
+
+const newMenu = menuMaker(menuItems);
+const headerElem = document.querySelector('.header');
+headerElem.appendChild(newMenu);
 /* 
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 
@@ -31,28 +58,3 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
-
-
-function menuMaker(array) {
-  console.log(array);
-  const menu = document.createElement('div');
-  const uList = document.createElement('ul');
-  const listItem = document.createElement('li');
-
-  menu.appendChild(uList);
-  // uList.appendChild(listItem);
-
-  menu.classList.add('menu');
-
-  listItem.textContent = item;
-
-
-  array.forEach(item => {
-    uList.appendChild(item)
-  });
-  return menu;
-}
-
-
-
-console.log('can you see this??');
